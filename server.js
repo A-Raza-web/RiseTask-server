@@ -101,4 +101,4 @@ app.get("/", (req, res) => {
 // ================================
 // Export app (Serverless Ready)
 // ================================
-module.exports = app;
+export default app;
