@@ -29,32 +29,17 @@ const app = express();
 
 // ✅ CORS Middleware (ONLY once)
 app.use(cors({
-  origin: "http://localhost:5173", // frontend ka port
-  methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],  // ✅ PATCH add kiya
+  origin: [
+    "http://localhost:5173",
+    "https://rise-task-brown.vercel.app/" 
+  ],
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],  
   allowedHeaders: ["Content-Type", "Authorization"],
 }));
 
 // ✅ Body parser
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-// ✅ Routes
-app.use("/api/home", homeRoutes);
-app.use("/api/about", aboutRoutes);
-app.use("/api/features", featuresRoute);
-app.use("/api/testimonials", testimonialRoutes);
-app.use("/api/pricing", pricingRoutes);
-app.use("/api/footer", footerRoutes);
-app.use("/api/tasks", taskRoutes);
-app.use("/api/tasklist", tasklistRoutes);
-app.use("/api/categories", taskCategoryRoutes);
-app.use("/api/notifications", notificationRoutes);
-app.use('/api/tasks', dashboardRoutes); 
-app.use("/api/settings", settingsRoutes);
-app.use("/api/auth", authForm);
-app.use("/api/profile", profileRoutes);
-app.use("/api/reviews", reviewRoutes);
-
 
 // ✅ MongoDB connect
 let cached = global.mongoose;
@@ -90,6 +75,26 @@ app.use(async (req, res, next) => {
     res.status(500).json({ message: "Database connection failed" });
   }
 });
+
+// ✅ Routes
+app.use("/api/home", homeRoutes);
+app.use("/api/about", aboutRoutes);
+app.use("/api/features", featuresRoute);
+app.use("/api/testimonials", testimonialRoutes);
+app.use("/api/pricing", pricingRoutes);
+app.use("/api/footer", footerRoutes);
+app.use("/api/tasks", taskRoutes);
+app.use("/api/tasklist", tasklistRoutes);
+app.use("/api/categories", taskCategoryRoutes);
+app.use("/api/notifications", notificationRoutes);
+app.use('/api/tasks', dashboardRoutes); 
+app.use("/api/settings", settingsRoutes);
+app.use("/api/auth", authForm);
+app.use("/api/profile", profileRoutes);
+app.use("/api/reviews", reviewRoutes);
+
+
+
 
 // ================================
 // Default Route
