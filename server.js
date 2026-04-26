@@ -31,7 +31,7 @@ const app = express();
 app.use(cors({
   origin: [
     "http://localhost:5173",
-    "https://rise-task-brown.vercel.app/" 
+    "https://rise-task-brown.vercel.app" 
   ],
   methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],  
   allowedHeaders: ["Content-Type", "Authorization"],
